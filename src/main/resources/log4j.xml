@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- Appenders -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p: %c - %m%n" />
+        </layout>
+    </appender>
+    <appender name="springAppender"
+    class="org.apache.log4j.RollingFileAppender">
+        <!--<param name="file"   value="${log.home}\\spring_mvc_app.log" />-->
+        <param name="file"   value="/usr/local/tomcat/logs/spring_mvc_app.log" />
+        <param name="append" value="true" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="BufferedIO" value="true" />
+        <param name="BufferSize" value="512" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Application Loggers -->
+    <category name="com.soramame.web">
+        <priority value="debug" />
+        <appender-ref ref="springAppender" />
+    </category>
+
+    <!-- 3rdparty Loggers -->
+    <category name="org.springframework.core">
+        <priority value="info" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="org.springframework.beans">
+        <priority value="info" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="org.springframework.context">
+        <priority value="info" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="org.springframework.web">
+        <priority value="info" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="org.springframework.jndi">
+        <priority value="info" />
+        <appender-ref ref="console" />
+    </category>
+    <!-- Root Logger -->
+    <root></root>
+
+</log4j:configuration>

@@ -1,0 +1,47 @@
+CSSについて
+・デフォルトスタイルシート
+　　ブラウザごとに定義されているシート。
+・リセットCSS
+　　デフォルトスタイルシートのブラウザ間の差をなくして、
+　　スタイルがゼロの状態からデザインする。
+　　例：http://meyerweb.com/eric/tools/css/reset/
+　　　　http://yui.github.io/yui2/
+　　→必要なデフォルトスタイルシートまでリセットしてしまう
+　　　フォーム関連で一部表示がおかしくなる
+　　
+・Normalize.css
+　　ブラウザ間の誤差をなくして補正（ノーマライズ）する。
+　　デフォルトスタイルシートはそのまま適用される。
+　　http://necolas.github.io/normalize.css/
+
+[参考]Normalize.cssを使ったコーディングの注意点とリセットCSSとの違い
+　　http://cappee.net/coding/normalize-css-reset-css
+
+
+
+・CSSフレームワーク参考サイト
+　　http://liginc.co.jp/web/tool/other-tool/60107
+　　http://coliss.com/articles/build-websites/operation/css/best-of-css-frameworks-for-web-developers.html
+　　http://javatechnology.net/other/css-framework/
+
+CSSフレームワーク
+　　Bootstrap
+　　http://www.marineroad.com/staff-blog/4792.html
+　　http://www.atmarkit.co.jp/ait/articles/1403/19/news034.html
+  http://bootswatch.com/
+　　http://bootswatch.com/cerulean/
+
+Initializr
+　　http://www.initializr.com/
+
+Web Fonts
+  http://yohshiy.blog.fc2.com/blog-entry-107.html
+  http://www.google.com/fonts/
+  
+Sample
+  http://getbootstrap.com/examples/signin/
+  http://bootswatch.com/default/
+  
+・RESTful
+　　http://www.slideshare.net/MonstarLabInc/rest-ful-api
+　　http://qiita.com/irxground/items/cd83786b10d81eecce77

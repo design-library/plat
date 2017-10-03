@@ -1,0 +1,28 @@
+Project Platform
+======================================
+独自ドメイン
+　URL : https://www.plat4u.com/
+　さくらインターネットでドメイン取得
+　1,852円/年（税込み）
+　http://www.sakura.ne.jp/domain/
+
+メールボックス
+　さくらのメールボックス（メールサーバー）
+　1,029円/年（税込み）
+　容量10GB
+　http://www.sakura.ne.jp/mail/
+
+カゴヤ・クラウド/VPS
+　タイプB
+　1,728円/月（税込み）
+　CPU:6core
+　HDD:400GB
+　Memory:4GB
+　http://www.kagoya.jp/cloud/vps/plan.html
+
+SSL
+　さくらのSSL（ラピッドSSL）
+　1,620円/年（税込み）
+　http://ssl.sakura.ad.jp/geotrust.html
+
+

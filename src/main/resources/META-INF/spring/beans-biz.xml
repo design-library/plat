@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ * Copyright 2015 Plat.
+ * 
+ * This file is part of Pj Platform.
+ *
+ *  Pj Platform is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Pj Platform is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pj Platform.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+        
+  <aop:aspectj-autoproxy />
+ 
+  <context:component-scan base-package="com.soramame.web.biz.service"/>
+  <context:component-scan base-package="com.soramame.web.biz.dto"/>
+  <context:component-scan base-package="com.soramame.web.biz.dao"/>
+  <context:component-scan base-package="com.soramame.web.aop"/>
+  <context:component-scan base-package="com.soramame.web.util"/>
+  
+  <context:property-placeholder location="classpath:jdbc.properties"/>
+      <bean id="messageSource"
+      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="classpath:/META-INF/i18n/messages"/>
+  </bean>
+  
+<!-- 
+  <bean id="validator"
+      class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="validationMessageSource" ref="messageSource"/>
+  </bean>
+ -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="plat4u.sakura.ne.jp"/>
+    <property name="port" value="587"/>
+    <property name="username" value="agent@plat4u.com"/>
+    <property name="password" value="+N9d7VuB"/>
+    <property name="javaMailProperties">
+      <props>
+        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+        <prop key="mail.smtp.ssl.trust">plat4u.sakura.ne.jp</prop>
+        <prop key="mail.mime.charset">UTF-8</prop>
+        <prop key="mail.debug">false</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <bean id="simpleMailer" class="com.soramame.web.util.SimpleMailer">
+    <property name="mailSender" ref="mailSender" />
+    <property name="velocityEngine" ref="velocityEngine"/>
+  </bean>
+  
+  <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <property name="velocityProperties">
+      <props>
+        <prop key="resource.loader">class</prop>
+        <prop key="class.resource.loader.class">
+          org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+        </prop>
+      </props>
+    </property>
+  </bean>
+  
+  <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+  
+
+  <aop:config>
+    <aop:advisor advice-ref="transactionAdvice"
+        pointcut="execution(* com.soramame.web.biz.service.*Service.*(..))" />
+  </aop:config>
+
+  <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="get*" read-only="true" />
+      <tx:method name="update*" 
+                 propagation="REQUIRED" 
+                 isolation="READ_COMMITTED"
+                 timeout="10" 
+                 read-only="false"
+                 rollback-for="com.soramame.web.biz.service.BusinessException" />
+      <tx:method name="add*" 
+                 propagation="REQUIRED" 
+                 isolation="READ_COMMITTED"
+                 timeout="10" 
+                 read-only="false"
+                 rollback-for="com.soramame.web.biz.service.BusinessException" />
+      <tx:method name="delete*" 
+                 propagation="REQUIRED" 
+                 isolation="READ_COMMITTED"
+                 timeout="10" 
+                 read-only="false"
+                 rollback-for="com.soramame.web.biz.service.BusinessException" />
+    </tx:attributes>
+  </tx:advice>
+ 
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <constructor-arg ref="dataSource" />
+  </bean>
+  <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+    <constructor-arg ref="dataSource" />
+  </bean>
+
+  <bean id="dataSource"
+    class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${jdbc.driverClassName}" />
+    <property name="url" value="${jdbc.url}" />
+    <property name="username" value="${jdbc.username}" />
+    <property name="password" value="${jdbc.password}" />
+  </bean>
+  <!-- <context:property-placeholder location="jndi.properties"/> -->
+  <!-- <jee:jndi-lookup id="dataSource"  jndi-name="${jndi.datasource}" /> -->
+ 
+</beans>

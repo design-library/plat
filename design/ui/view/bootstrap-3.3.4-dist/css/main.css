@@ -1,0 +1,171 @@
+/*
+  Copyright 2015 Edamame design apps
+  
+  This file is part of Edamame Web.
+
+  Edamame Web is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Edamame Web is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Edamame Web.  If not, see <http://www.gnu.org/licenses/>.
+*/
+@font-face {
+  font-family: 'JapanSans100';
+  src: url('../fonts/JapanSans100.eot');
+  src: url('../fonts/JapanSans100.eot?#iefix') format('embedded-opentype'), url('../fonts/JapanSans100.woff') format('woff'), url('../fonts/JapanSans100.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.container {
+    font-family:'JapanSans100','Pontano Sans','ƒqƒ‰ƒMƒmŠpƒS Pro W3','Hiragino Kaku  Pro','ƒƒCƒŠƒI',Meiryo,'‚l‚r ‚oƒSƒVƒbƒN','MS PGothic',sans-serif;
+}
+
+.th-width-100 {
+  width:100%;
+}
+.th-width-80 {
+  width:80%;
+  white-space: nowrap;
+}
+
+.th-width-70 {
+  width:70%;
+  white-space: nowrap;
+}
+.th-width-60 {
+  width:60%;
+  white-space: nowrap;
+}
+.th-width-50 {
+  width:50%;
+  white-space: nowrap;
+}
+.th-width-40 {
+  width:40%;
+  white-space: nowrap;
+}
+.th-width-30 {
+  width:30%;
+  white-space: nowrap;
+}
+.th-width-20 {
+  width:20%;
+  white-space: nowrap;
+}
+.th-width-15 {
+  width:15%;
+  white-space: nowrap;
+}
+.th-width-10 {
+  width:10%;
+  white-space: nowrap;
+}
+.th-width-5 {
+  width:5%;
+  white-space: nowrap;
+}
+table > thead > tr.tr-background-color {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.td-width-100 {
+  width:100%;
+}
+.td-width-80 {
+  width:80%;
+}
+.td-width-70 {
+  width:70%;
+}
+.td-width-60 {
+  width:60%;
+}
+.td-width-50 {
+  width:50%;
+}
+.td-width-40 {
+  width:40%;
+}
+.td-width-30 {
+  width:30%;
+}
+.td-width-20 {
+  width:20%;
+}
+.td-width-15 {
+  width:15%;
+}
+.td-width-10 {
+  width:10%;
+}
+.td-width-5 {
+  width:5%;
+}
+
+table > thead > tr > th.border-bottom {
+  border-bottom: 1px solid #000000;
+}
+table > tbody > tr > td.border-bottom {
+  border-bottom: 1px solid #000000;
+}
+.cptn {
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 2.7;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.background-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+.margin-10 {
+  margin-top:10px;
+  margin-button:10px;
+}
+.margin-left-50 {
+  margin-left:50px;
+}
+.page-title {
+  padding: 12px 0px 12px 35px;
+  margin: 30px 0px 30px 0px;
+  color: inherit;
+  background-color: #eee;
+  border-radius: 6px;
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .page-title {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .page-title h1 {
+    font-size: 41px;
+  }
+}
+.page-scroll {
+  margin-top:5%;
+  float:right;
+}

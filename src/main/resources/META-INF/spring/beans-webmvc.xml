@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ * Copyright 2015 Plat.
+ * 
+ * This file is part of Pj Platform.
+ *
+ *  Pj Platform is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Pj Platform is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pj Platform.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+      http://www.springframework.org/schema/jee
+      http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+      
+  <mvc:annotation-driven />
+  <mvc:resources mapping="/resources/**" location="/resources/" />
+  <mvc:interceptors>
+    <mvc:interceptor>
+      <mvc:mapping path="/*" />
+      <bean id="responseHeaderInterceptor"
+          class="com.soramame.web.interceptor.ResponseHeaderInterceptor">
+      </bean>
+    </mvc:interceptor>
+  </mvc:interceptors>
+
+  <bean id="messageSource"
+      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="classpath:/META-INF/i18n/messages"/>
+  </bean>
+  
+  <context:component-scan base-package="com.soramame.web.controller"/>
+  <context:component-scan base-package="com.soramame.web.model"/>
+  <context:component-scan base-package="com.soramame.web.util"/>
+  <context:component-scan base-package="com.soramame.web.validator"/>
+  <context:component-scan base-package="com.soramame.web.aop"/>
+  <context:component-scan base-package="com.soramame.web.filter"/>
+  
+  <aop:aspectj-autoproxy />
+    
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/views/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean>
+  
+  <bean class="com.soramame.web.handler.GlobalExceptionResolver" />
+  
+  <bean id="simpleMailer" class="com.soramame.web.util.SimpleMailer">
+    <property name="mailSender" ref="mailSender" />
+    <property name="velocityEngine" ref="velocityEngine"/>
+  </bean>
+  
+  <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <property name="velocityProperties">
+      <props>
+        <prop key="resource.loader">class</prop>
+        <prop key="class.resource.loader.class">
+          org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+        </prop>
+      </props>
+    </property>
+  </bean>
+  
+  
+</beans>
